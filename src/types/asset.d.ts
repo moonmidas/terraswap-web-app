@@ -25,11 +25,11 @@ interface ListedSwapItem {
 
 /* chain */
 interface AssetInfo {
-  token: { contract_addr: string }
+  token: { contract_addr: string; decimals?: number }
 }
 
 interface NativeInfo {
-  native_token: { denom: string }
+  native_token: { denom: string; decimals?: number }
 }
 
 interface AssetToken {

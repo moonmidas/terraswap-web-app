@@ -76,6 +76,7 @@ interface TokenInfo {
   symbol: string
   name: string
   contract_addr: string
+  decimals: number
 }
 
 interface PairsResponse {

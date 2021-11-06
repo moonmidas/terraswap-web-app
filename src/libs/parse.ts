@@ -12,7 +12,7 @@ type Formatter = (
 const rm = BigNumber.ROUND_DOWN
 export const dp = (contract_addr?: string) => {
   if (contract_addr) {
-    const tokenInfo = tokenInfos.get(contract_addr)
+    const tokenInfo: any = tokenInfos.get(contract_addr)
     return tokenInfo?.decimals || 6
   }
   return 6
@@ -35,7 +35,7 @@ export const decimal = (value = "0", dp = 6) =>
 export const lookup: Formatter = (amount = "0", contract_addr, config) => {
   let decimals = 6
   if (contract_addr) {
-    const tokenInfo = tokenInfos.get(contract_addr)
+    const tokenInfo: any = tokenInfos.get(contract_addr)
     if (tokenInfo) {
       decimals = tokenInfo.decimals
     }
@@ -72,7 +72,7 @@ export const formatAsset: Formatter = (amount, symbol, config) =>
 export const toAmount = (value: string, contract_addr?: string) => {
   let decimals = 6
   if (contract_addr) {
-    const tokenInfo = tokenInfos.get(contract_addr)
+    const tokenInfo: any = tokenInfos.get(contract_addr)
     if (tokenInfo) {
       decimals = tokenInfo.decimals
     }
