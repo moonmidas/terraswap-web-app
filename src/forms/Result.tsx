@@ -43,7 +43,7 @@ const Result = ({ response, error, onFailure, parserKey }: ResultProps) => {
   const [txInfo, setTxInfo] = useState<SwapTxInfo>()
 
   const [status, setStatus] = useState<STATUS>(STATUS.LOADING)
-  const { fcd } = useNetwork()
+  const { lcd } = useNetwork()
 
   const retryCount = useRef(0)
 
@@ -54,7 +54,7 @@ const Result = ({ response, error, onFailure, parserKey }: ResultProps) => {
         return
       }
       try {
-        const { data: res } = await axios.get(`${fcd}/txs/${txHash}`)
+        const { data: res } = await axios.get(`${lcd}/txs/${txHash}`)
         if (res?.code) {
           setTxInfo(res)
           setStatus(STATUS.FAILURE)

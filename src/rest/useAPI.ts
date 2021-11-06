@@ -158,17 +158,17 @@ export function isNativeInfo(object: any): object is NativeInfo {
 }
 
 export default () => {
-  const { fcd, factory, service } = useNetwork()
+  const { lcd, factory, service } = useNetwork()
   const address = useAddress()
   const { getSymbol } = useContractsAddress()
   const getURL = useURL()
 
   // useBalance
   const loadDenomBalance = useCallback(async () => {
-    const url = `${fcd}/bank/balances/${address}`
+    const url = `${lcd}/bank/balances/${address}`
     const res: DenomBalanceResponse = (await axios.get(url)).data
     return res.result
-  }, [address, fcd])
+  }, [address, lcd])
 
   const loadContractBalance = useCallback(
     async (localContractAddr: string) => {
@@ -184,7 +184,7 @@ export default () => {
   const loadGasPrice = useCallback(
     async (symbol: string) => {
       const symbolName = getSymbol(symbol) || symbol
-      const url = `${fcd}/v1/txs/gas_prices`
+      const url = `${lcd}/v1/txs/gas_prices`
       const res: GasPriceResponse = (await axios.get(url)).data
 
       let gasPrice = "0"
@@ -213,7 +213,7 @@ export default () => {
 
       return gasPrice
     },
-    [fcd, getSymbol]
+    [lcd, getSymbol]
   )
 
   // usePairs
@@ -371,18 +371,18 @@ export default () => {
         return ""
       }
       const symbolName = getSymbol(symbol) || symbol
-      const url = `${fcd}/treasury/tax_cap/${symbolName}`
+      const url = `${lcd}/treasury/tax_cap/${symbolName}`
       const res: TaxResponse = (await axios.get(url)).data
       return res.result
     },
-    [fcd, getSymbol]
+    [lcd, getSymbol]
   )
 
   const loadTaxRate = useCallback(async () => {
-    const url = `${fcd}/treasury/tax_rate`
+    const url = `${lcd}/treasury/tax_rate`
     const res: TaxResponse = (await axios.get(url)).data
     return res.result
-  }, [fcd])
+  }, [lcd])
 
   return {
     loadDenomBalance,

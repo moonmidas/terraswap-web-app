@@ -10,16 +10,16 @@ const toQueryMsg = (msg: string) => {
 }
 
 export default () => {
-  const { fcd } = useNetwork()
+  const { lcd } = useNetwork()
   const getUrl = useCallback(
     (contract: string, msg: string | object) => {
       const query_msg =
         typeof msg === "string"
           ? toQueryMsg(msg)
           : encodeURIComponent(JSON.stringify(msg))
-      return `${fcd}/wasm/contracts/${contract}/store?query_msg=${query_msg}`
+      return `${lcd}/wasm/contracts/${contract}/store?query_msg=${query_msg}`
     },
-    [fcd]
+    [lcd]
   )
   return getUrl
 }
